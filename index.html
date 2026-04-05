@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Tracker Pro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <h2>ADD ENTRY</h2>
+            <div class="input-group">
+                <label>Date:</label>
+                <input type="date" id="entry-date">
+            </div>
+            <div class="input-group">
+                <label>Category:</label>
+                <select id="entry-category">
+                    <option value="Groceries">Groceries</option>
+                    <option value="Rent">Rent</option>
+                    <option value="Salary">Salary</option>
+                    <option value="Entertainment">Entertainment</option>
+                    <option value="Utilities">Utilities</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label>Type:</label>
+                <select id="entry-type">
+                    <option value="Income">Income</option>
+                    <option value="Expense">Expense</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <input type="number" id="entry-amount" placeholder="Amount">
+            </div>
+            <button id="save-log" class="btn-main">Save Log</button>
+        </aside>
+
+        <main class="main-content">
+            <h2>SEARCH & FILTER</h2>
+            <div class="filter-controls">
+                <div class="row">
+                    <input type="date" id="filter-start">
+                    <input type="date" id="filter-end">
+                    <select id="filter-category" class="yellow-select">
+                        <option value="All">All</option>
+                        <option value="Groceries">Groceries</option>
+                        <option value="Rent">Rent</option>
+                        <option value="Salary">Salary</option>
+                        <option value="Entertainment">Entertainment</option>
+                        <option value="Utilities">Utilities</option>
+                    </select>
+                </div>
+                <button id="manual-search" class="btn-main">Manual Search</button>
+                <div class="quick-filters">
+                    <button onclick="filterBy('month')">This Month</button>
+                    <button onclick="filterBy('year')">This Year</button>
+                    <button onclick="filterBy('all')">Show All</button>
+                </div>
+            </div>
+
+            <div class="display-area" id="log-container">
+                <table id="log-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Category</th>
+                            <th>Type</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody id="log-body"></tbody>
+                </table>
+            </div>
+
+            <div class="file-ops">
+                <button onclick="exportJSON()" class="btn-alt">Export JSON</button>
+                <label for="import-json" class="btn-alt">Import JSON</label>
+                <input type="file" id="import-json" accept=".json" style="display:none" onchange="importJSON(event)">
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
